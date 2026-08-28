@@ -43,41 +43,38 @@
     </Reference>
     <Reference Include="Eplan.EplApi.AFu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.AFu.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.AFu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.Baseu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.Baseu.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.Baseu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.DataModelu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.DataModelu.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.DataModelu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.Guiu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.Guiu.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.Guiu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.HEServicesu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.HEServicesu.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.HEServicesu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.MasterDatau, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.MasterDatau.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.MasterDatau.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Eplan.EplApi.Starteru, Version=1.0.0.0, Culture=neutral, PublicKeyToken=57aaa27e22f7b107, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EPLAN_ADDIN_TEMPLATE\DLLs\Eplan.EplApi.Starteru.dll</HintPath>
+      <HintPath>..\DLLs\Eplan.EplApi.Starteru.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
-      <HintPath>..\packages\HandyControl.3.5.1\lib\net481\HandyControl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -126,6 +123,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FunctionUtility.cs" />
+    <Compile Include="Utilities\GuiUtility.cs" />
+    <Compile Include="Utilities\PageUtility.cs" />
+    <Compile Include="Utilities\PropertyUtility.cs" />
+    <Compile Include="Utilities\SelectionUtility.cs" />
+    <Compile Include="Utilities\SettingUtility.cs" />
+    <Compile Include="Utilities\WindowsUtility.cs" />
     <Compile Include="ViewModels\ProjectPropertiesViewModel.cs" />
     <Compile Include="Views\ProjectPropertiesWindow.xaml.cs">
       <DependentUpon>ProjectPropertiesWindow.xaml</DependentUpon>
@@ -157,12 +161,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EPLAN_UTILITIES\EPLAN_UTILITIES.csproj">
-      <Project>{2c89d479-66af-445f-bc18-b0218cacbbcb}</Project>
-      <Name>EPLAN_UTILITIES</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

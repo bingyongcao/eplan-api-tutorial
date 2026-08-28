@@ -2,7 +2,6 @@
 using Eplan.EplApi.Base;
 using Eplan.EplApi.Gui;
 using EplanUtilities;
-using System.Linq;
 
 namespace EPLAN_API_TUTORIAL
 {
