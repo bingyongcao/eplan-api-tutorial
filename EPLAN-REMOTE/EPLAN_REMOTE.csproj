@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="grpc_csharp_ext.x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DLLs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Eplan.EplApi.RemoteClientu">
+      <HintPath>DLLs\Eplan.EplApi.RemoteClientu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Eplan.EplApi.Remotingu">
+      <HintPath>DLLs\Eplan.EplApi.Remotingu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>DLLs\Google.Protobuf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Grpc.Core">
+      <HintPath>DLLs\Grpc.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Grpc.Core.Api">
+      <HintPath>DLLs\Grpc.Core.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
