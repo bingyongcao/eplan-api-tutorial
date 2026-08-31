@@ -8,7 +8,7 @@
         Title="MainWindow" Height="250" Width="400">
     <Grid Margin="10">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Height="30" Content="Start" Click="Start_Click"/>
+            <Button Height="30" Width="100" Content="GetPageCount" Click="Page_Count_Click"/>
         </StackPanel>
     </Grid>
 </Window>

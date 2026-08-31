@@ -1,15 +1,8 @@
-﻿using Eplan.EplApi.Starter;
+﻿using Eplan.EplApi.DataModel;
+using Eplan.EplApi.Starter;
 using Eplan.EplApi.System;
-using System.Text;
+using Microsoft.Win32;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EPLAN_OFFLINE
 {
@@ -18,19 +11,60 @@ namespace EPLAN_OFFLINE
     /// </summary>
     public partial class MainWindow : Window
     {
-        private EplApplication m_oEplApp = new EplApplication();
+        private EplApplication? m_oEplApp;
         private bool m_bIsEplanAlreadyInitialized = false;
         private string m_strEplanBinFolder = "";
 
         public MainWindow()
         {
             InitializeComponent();
+            
             GetEplanBinFolder();
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        private void Page_Count_Click(object sender, RoutedEventArgs e)
         {
-            EPLInit();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select eplan project file",
+                Filter = "EPLAN project (*.elk)|*.elk",
+                CheckFileExists = true,
+                Multiselect = false
+            };
+
+            if (openFileDialog.ShowDialog(this) != true)
+            {
+                return;
+            }
+
+            if (!EPLInit())
+            {
+                return;
+            }
+
+            try
+            {
+                using (LockingStep lockingStep = new LockingStep())
+                {
+                    Project project = new ProjectManager().OpenProject(openFileDialog.FileName);
+
+                    try
+                    {
+                        int pageCount = project.Pages.Length;
+                        MessageBox.Show(
+                            $"Project：{project.ProjectName}\nPage count：{pageCount}",
+                            "EPLAN project info");
+                    }
+                    finally
+                    {
+                        project.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Failed when reading project info");
+            }
         }
 
         private void GetEplanBinFolder()
@@ -54,35 +88,51 @@ namespace EPLAN_OFFLINE
             m_strEplanBinFolder = oResolver.GetEplanBinPath();
         }
 
-        private void EPLInit()
-        {
-            try
-            {
-                if (!m_bIsEplanAlreadyInitialized)
-                {
-                    if (!String.IsNullOrEmpty(m_strEplanBinFolder))
-                    {
-                        m_oEplApp.EplanBinFolder = m_strEplanBinFolder;
-                    }
-                    m_oEplApp.Init("");
-                    m_bIsEplanAlreadyInitialized = true;
-                }
-            }
-            catch (Exception)
-            {
-                //ToDo add an exception handling code here
-            }
-
-        }
-
-
-        private void EPLExit()
+        private bool EPLInit()
         {
             try
             {
                 if (m_bIsEplanAlreadyInitialized)
                 {
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(m_strEplanBinFolder))
+                {
+                    MessageBox.Show(
+                        "EPLAN version is not confirmed", 
+                        "EPLAN initialization failed");
+                    return false;
+                }
+
+                m_oEplApp = new EplApplication
+                {
+                    EplanBinFolder = m_strEplanBinFolder
+                };
+
+                m_oEplApp.Init("");
+                m_bIsEplanAlreadyInitialized = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"{ex.GetType().FullName}\n" +
+                    $"HRESULT: 0x{ex.HResult:X8}\n\n" +
+                    ex,
+                    "EPLAN initialization failed");
+                return false;
+            }
+        }
+
+        private void EPLExit()
+        {
+            try
+            {
+                if (m_bIsEplanAlreadyInitialized && m_oEplApp != null)
+                {
                     m_oEplApp.Exit();
+                    m_oEplApp = null;
                     m_bIsEplanAlreadyInitialized = false;
                 }
             }
