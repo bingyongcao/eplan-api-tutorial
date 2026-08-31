@@ -1,9 +1,9 @@
 # EPLAN API Tutorial
 
 <p align="center">
-    <a href="https://github.com/bingyongcao/eplan-api-tutorial/blob/main/README-cn.md">中文</a>
+    <a href="https://github.com/bingyongcao/eplan-api-tutorial/blob/master/README-cn.md">中文</a>
     |
-    <a href="https://github.com/bingyongcao/eplan-api-tutorial/blob/main/README.md">English</a>
+    <a href="https://github.com/bingyongcao/eplan-api-tutorial/blob/master/README.md">English</a>
 </p>
 
 A collection of practical C# examples for extending and automating EPLAN Electric P8. The repository covers the four common EPLAN integration models: add-ins, scripts, remote clients, and standalone offline applications.
