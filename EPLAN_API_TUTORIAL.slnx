@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="README-cn.md" />
     <File Path="README.md" />
   </Folder>
   <Project Path="EPLAN-ADDIN-TUTORIAL/EPLAN_ADDIN_TUTORIAL.csproj" Id="457254dc-0dfb-4955-90e6-11b49c00ec55" />
